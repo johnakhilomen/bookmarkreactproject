@@ -6,7 +6,12 @@ import Header from './Header';
 
 class App extends Component {
   state = { 
-    headerText : "App" 
+    headerText : "App",
+    success: true,
+    aNumber: 213,
+    aString: "Some string",
+    anArray : [1,2,3,4],
+    anObject: {"key" : "value"} 
    }
    clickButton = () => {
      console.log("Clicked!");

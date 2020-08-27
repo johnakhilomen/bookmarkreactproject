@@ -6,14 +6,7 @@ import Header from '../Header';
 import SetupEnzyme from "./SetupEnzyme";
 
 SetupEnzyme.init();
-const setup = (props={}, state=null)=>{
-  const wrapper = shallow(<Header {...props}></Header>);
-  if(state)
-  {
-    wrapper.setState(state);
-  }
-  return wrapper;
-}
+
 const appWrapper = shallow(<App></App>);
 
 test("renders Header component", ()=> {
@@ -34,11 +27,18 @@ test("headerText initial state is App", ()=> {
 });
 
 test("set headerText state when button is clicked", ()=> {
-  const headerText = "New Header Text";
-  const wrapper = setup(null, {headerText});
   const button = appWrapper.find("[className='myButton']");
   button.simulate("click");
-
   const changeHeaderText =  appWrapper.find(Header);
   expect(changeHeaderText.props().headerText).toBe("New Header Text");
+})
+
+test("Will validata state for correctness", ()=> {
+  const appState = appWrapper.state();
+  expect(typeof(appState.success)).toBe(typeof(true));
+  expect(typeof(appState.aNumber)).toBe(typeof(0));
+  expect(typeof(appState.aString)).toBe(typeof(""));
+  expect(typeof(appState.anArray)).toBe(typeof([]));
+  expect(typeof(appState.anObject)).toBe(typeof({}));
+  //expect(typeof(successState)).toBe(typeof(true));
 })
